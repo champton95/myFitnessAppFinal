@@ -25,7 +25,10 @@ const game = {
         players: [],
         dealer: 0,
         routines: []
-    }
+    },
+    searchBar: {
+        workouts: workouts
+    } 
 }
 
 module.exports = game;

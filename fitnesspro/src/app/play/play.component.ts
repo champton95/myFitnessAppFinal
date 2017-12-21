@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from "@angular/http";
-import { Room, Player, Quote, Workout, ChatRoom, Routine } from '../models/game';
+import { Room, Player, Quote, Workout, ChatRoom, Routine, Searchbar } from '../models/game';
 import { GameService } from '../models/game.service';
 import { Router } from '@angular/router';
 import { Image } from '../widgets/picture-chooser/picture-chooser.component'
 
 declare const FB: any;
+declare const angular: any;
+declare var $:any;
 
 @Component({
   selector: 'app-play',
@@ -16,17 +18,18 @@ export class PlayComponent implements OnInit {
 
     room = new Room();
     chatRoom = new ChatRoom();
+    searchBar = new Searchbar();
     me: Player;
-
     fbImages: Image[];
-
+  
     constructor(private http: Http, public game: GameService, private router: Router) { }
-
+    
     ngOnInit() {
         if(this.game.me == null){
             this.router.navigate(['/login']);
         }
         this.me = this.game.me;
+        $("#search-bar").select2();
         setInterval(()=> this.update(), 1000)
     }
 
@@ -39,6 +42,22 @@ export class PlayComponent implements OnInit {
         });
     }
 
+    public params = {
+    hl: 'en',
+    ds: 'yt',
+    xhr: 't',
+    client: 'youtube'
+    };
+    public url = 'https://suggestqueries.google.com/complete/search';
+    
+    public url2 = JSON.parse(JSON.stringify(this.room.workouts.map(a => a.text)));
+    public query = "";
+ 
+    handleResult2Selected (result) {
+        this.query = result;
+        this.pickWorkout3()
+    }
+    
     submitMiles(e: MouseEvent, i: number){
         e.preventDefault();
         this.http.post(this.game.apiRoot + "/game/room/player", {}).subscribe();
@@ -70,6 +89,21 @@ export class PlayComponent implements OnInit {
         e.preventDefault();
         const setTime = prompt("What time do you want to do this exercise?", "12pm");
         workout.time = setTime;
+        this.me.workouts.push(workout);
+    }
+    
+    pickWorkout2(e: MouseEvent, player: Player){
+        e.preventDefault();
+        const data = $("#search-bar").select2("val");
+        const setTime = prompt("What time do you want to do this exercise?", "12pm");
+        const workout = { text: data, chosen: true, player: player.name, time: setTime };
+        this.me.workouts.push(workout);
+    }
+    pickWorkout3(){
+        const data = this.query;
+        const player = this.myRoutine();
+        const setTime = prompt("What time do you want to do this exercise?", "12pm");
+        const workout = { text: data, chosen: true, player: player.name, time: setTime };
         this.me.workouts.push(workout);
     }
     
@@ -115,4 +149,17 @@ export class PlayComponent implements OnInit {
             this.fbImages = response.data.map((x: any )=> ({ id: x.id, src: x.picture, link: x.images[0].source }) )
         });
     }
+    
+    formatState (state: any) {
+        if (!state.id) {
+            return state.text;
+        }
+        var baseUrl = "/user/pages/images/flags";
+        var $state = $("<span>" + state.text + "</span>");
+        return $state;
+    }
+    
+    
+    
+        
 }

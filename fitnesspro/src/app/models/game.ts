@@ -32,6 +32,7 @@ export class Player {
     workouts: Workout[] = [];
     score: number = 0;
     showRoutine: boolean = false;
+    searchBar: Searchbar;
 }
 
 export class Room {
@@ -41,4 +42,8 @@ export class Room {
     quotes: Quote[] = [];
     workouts: Workout[] = [];
     routines: Routine[] = [];
+}
+
+export class Searchbar {
+    workouts: Workout[] = [];
 }

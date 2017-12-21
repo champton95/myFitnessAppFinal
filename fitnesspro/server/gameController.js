@@ -11,6 +11,7 @@ router
     .get("/workouts", (req, res) => res.send( Array(0).fill().map( () => game.getNextWorkout() )))
     .get("/chatRoom", (req, res) => res.send(game.chatRoom))
     .get("/room", (req, res) => res.send(game.room))
+    .get("/searchBar", (req, res) => res.send(game.searchBar))
     .post("/chatRoom/messages", (req, res) => {
         game.chatRoom.messages.push(req.body);
         res.status(201).send();

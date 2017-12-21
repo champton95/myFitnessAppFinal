@@ -4,6 +4,28 @@
             <div class="card">
                 <h6 style="margin:auto;padding:2px;">Available Workouts</h6>
             </div>
+            <div  class="card">
+                <b>Search:</b>
+                <div class="search-results style-3">
+                      <input type="text" [value]="query"
+                        ngxTypeahead
+                        [taUrl]="url"
+                        [taParams]="params"
+                        (taSelected)="handleResult2Selected($event)">
+                </div>
+                or <br>
+                <select id="search-bar" name="state">
+                      <option *ngFor="let x of room.workouts; index as i" value="{{x.text}}" (click)="pickWorkout($event, x, i, myRoutine())" >
+                              <button class="btn btn-outline-primary" style="width:250px;" (click)="pickWorkout($event, x, i, myRoutine())">
+                                {{x.text}}
+                            </button>
+                    </option>
+                </select>
+                    <button class="btn btn-outline-primary" style="width:250px;" (click)="pickWorkout2($event, myRoutine())">
+                        select
+                    </button>
+            </div>
+            <!--
             <ul class="list-group list-group-flush">
                 <li *ngFor="let x of room.workouts; index as i" class="list-group-item" style="padding:0px;margin:auto;">
                     <button class="btn btn-outline-primary" style="width:250px;" (click)="pickWorkout($event, x, i, myRoutine())">
@@ -11,6 +33,7 @@
                     </button>
                 </li>
             </ul>
+            -->
                             <!--
                             <ul class="list-group list-group-flush" id="my-workouts">
                                 boppers

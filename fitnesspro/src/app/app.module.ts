@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
+import { NgxTypeaheadModule } from 'ngx-typeahead';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppComponent } from './app.component';
 import { HeadComponent } from './head/head.component';
@@ -27,7 +29,7 @@ import { AboutComponent } from './about/about.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule, FormsModule,
+    HttpModule, FormsModule, NgxTypeaheadModule,
     RouterModule.forRoot([
         { path: "play", component: PlayComponent },
         { path: "home", component: IndexComponent },
@@ -40,3 +42,4 @@ import { AboutComponent } from './about/about.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);
