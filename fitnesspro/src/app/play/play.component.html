@@ -1,0 +1,198 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <h6 style="margin:auto;padding:2px;">Available Workouts</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let x of room.workouts; index as i" class="list-group-item" style="padding:0px;margin:auto;">
+                    <button class="btn btn-outline-primary" style="width:250px;" (click)="pickWorkout($event, x, i, myRoutine())">
+                        {{x.text}}
+                    </button>
+                </li>
+            </ul>
+                            <!--
+                            <ul class="list-group list-group-flush" id="my-workouts">
+                                boppers
+                                    <li *ngFor="let x of me.workouts; index as i"
+                                        class="list-group-item"
+                                        [ngClass]="{disabled: me.id == room.dealer || myWorkout()}"
+                                        (click)="submitWorkout($event, x, i)">
+                                        {{x.text}}
+                                    </li>
+                            </ul>
+                            -->
+            
+        </div>
+        
+        <div class="col-md-9">
+            <div id="profileTop">
+                <h6>Your Profile</h6>
+            </div>
+            <div id="you">
+                <div class="card">
+                    <div class="card-header">
+                        <span  *ngIf="me.picture != null">
+                            <img [src]="me.picture" style="width: 20px;" class="rounded" />
+                        </span>
+
+                        <b>{{me.name}}</b>
+                        <span style="float:right;">
+                                        <span *ngIf="me.showRoutine">
+                                            <img src="../assets/img/sRon.jpg" style="height:10px" />
+                                        <button (click)="showRoutine($event)">
+                                            Hide Routine
+                                        </button>
+                                        </span>
+                                        
+                                        <span *ngIf="!me.showRoutine">
+                                            <img src="../assets/img/sRoff.jpg" style="height:10px" />
+                                        <button (click)="showRoutine($event)">
+                                            Show Routine
+                                        </button>
+                                        </span>
+                        </span>
+                    </div>
+                    <div *ngIf="me.workouts.length > 0" id="routine">
+                        <b>Your Routine:</b>
+                        <span style="float:right;font-size:10px;">
+                            [click to remove]
+                        </span>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Shleen">
+                        <button *ngFor="let y of me.workouts; index as i" type="button" class="btn btn-secondary" id="removeButton" (click)="removeWorkout($event, y)">
+                            {{y.text}} <br>
+                            <h6>time: {{y.time}} </h6>
+                        </button>
+                    </div>
+                </div> 
+            </div>
+            
+            <div id="fitnessGroup">
+                <b style="font-size:12px;letter-spacing: 3px;">USERS ONLINE:</b>
+                <div *ngFor="let x of room.players; index as i" class="card">
+                    <div *ngIf="x.name != me.name" class="card-header">
+                        <span  *ngIf="x.picture != null">
+                            <img [src]="x.picture" style="width: 20px;" class="rounded" />
+                        </span>
+
+                            <b>{{x.name}}</b>
+                            <div *ngFor="let z of room.routines; index as j">
+                                <span *ngIf="z.player.id == x.id">
+                                    <span *ngFor="let y of z.workouts; index as k" class="card" style="margin:2px;padding:4px 8px;width:100px;display:inline-block;">
+                                        {{y.text}} <br>
+                                        <h6>time: {{y.time}} </h6>
+                                    </span>
+                                </span>
+                            </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <b>Chat Room</b>
+                <div id="chat">
+                    <div *ngFor="let x of chatRoom.messages; index as i" class="card">
+                        <div *ngIf="x.text != null" class="card-header">
+                            <b>{{x.player.name}}</b>: {{x.text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="chatButton">
+                <button (click)="sendMsg($event, me)">
+                        Send Message
+                </button>
+            </div>
+                    <!--
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card" >
+                                <div *ngFor="let x of room.players; index as i" class="card-header">
+                                    <span  *ngIf="x.picture != null">
+                                        <img [src]="x.picture" style="width: 50px;" class="rounded" />
+                                    </span>
+
+                                    <b>{{x.name}}</b>
+                                    <ul *ngIf="x.picture != null" class="list-group list-group-flush" id="players">
+                                            <li class="list-group-item">
+                                                Miles Ran: {{x.name}}
+                                            </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="card" >
+                                <div class="card-header">
+                                    Workout Options
+                                </div>
+                                <ul class="list-group list-group-flush" id="my-workouts">
+                                    <li *ngFor="let x of me.workouts; index as i"
+                                        class="list-group-item"
+                                        [ngClass]="{disabled: me.id == room.dealer || myWorkout()}"
+                                        (click)="submitWorkout($event, x, i)">
+                                        {{x.text}}
+                                    </li>
+                                </ul>
+                                <!--
+                                <ul class="list-group list-group-flush" id="my-quotes" >
+                                    <li *ngFor="let x of me.quotes; index as i"
+                                        class="list-group-item"
+                                        [ngClass]="{disabled: me.id == room.dealer || myQuote()}"
+                                        (click)="submitQuote($event, x, i)">
+                                        {{x.text}}
+                                    </li>
+                                </ul>
+                                -->
+                                <!--
+                            </div>
+
+                        </div>
+                        <div class="col-md-9">
+                            <img [src]="fbImage" />
+                            <app-picture-chooser title="Facebook Pictures" [images]="fbImages" (selected)="fbImage =  $event.link"></app-picture-chooser>
+                                <div class="card" >
+                                        <div class="card-body">
+                                            <img class="card-img-top" [src]="room.picture" alt="Card image cap" id="picture" >
+                                            <a *ngIf="me.id == room.dealer && chosenQuote()" href="#" class="btn btn-primary" (click)="flipPicture($event)" >Flip a new card</a>
+                                            <a *ngIf="me.id == room.dealer && chosenQuote()" href="#" class="btn btn-success" (click)="showFBPictures($event)" >Pick FB Picture</a>
+
+                                            <div class="card" >
+                                                    <div class="card-header">
+                                                        Your Routine
+                                                    </div>
+                                                    <ul class="list-group list-group-flush" id="played-quotes">
+
+                                                        <li *ngFor="let x of room.workouts; index as i"
+                                                            class="list-group-item d-flex justify-content-between align-items-center"
+                                                            [ngClass]="{'list-group-item-success': x.chosen}">
+                                                            {{x.text}}
+                                                            <a href="#" class="btn btn-sm btn-primary"  (click)="removeQuote($event, i)">Remove</a>
+                                                        </li>
+
+                                                        <!--
+                                                        <li *ngFor="let x of room.quotes; index as i"
+                                                            class="list-group-item d-flex justify-content-between align-items-center"
+                                                            [ngClass]="{'list-group-item-success': x.chosen}">
+                                                            {{x.text}}
+                                                            <a href="#" class="btn btn-sm btn-primary"  *ngIf="!chosenQuote() && me.id == room.dealer" (click)="chooseQuote($event, i)">Choose</a>
+                                                            <span  *ngIf="!chosenQuote() && me.id != room.dealer" class="badge badge-secondary">hidden</span>
+                                                            <span  *ngIf="chosenQuote()" class="badge badge-info">{{x.player}}</span>
+                                                        </li>
+                                                        -->
+                                                        <!--
+                                                    </ul>
+                                                </div>
+
+                                        </div>
+                                    </div>
+
+                        </div>
+                    </div>
+                    -->
+        </div>
+    </div>
+</div>

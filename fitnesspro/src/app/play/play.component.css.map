@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,yBAAiB;EACb,OAAO,EAAE,GAAG;EAEZ,gCAAO;IACH,KAAK,EAAE,KAAK;IACZ,MAAM,EAAE,GAAG;;AAIvB,KAAK;EACD,MAAM,EAAE,eAAe;EACvB,MAAM,EAAE,KAAK;EACb,QAAQ,EAAE,IAAI;;AAElB,aAAa;EACT,KAAK,EAAC,GAAG",
+"sources": ["play.component.scss"],
+"names": [],
+"file": "play.component.css"
+}

@@ -1,0 +1,26 @@
+#players {
+    .list-group-item {
+        padding: 5px;
+
+        .badge {
+            float: right;
+            margin: 5px;
+        }
+    }
+}
+#chat{
+    border: 1px solid black;
+    height: 250px;
+    overflow: auto;
+}
+#removeButton:hover{
+    background-color: #FF0000;
+}
+#profileTop{
+    padding-top:5px;
+    border-top: 1px solid black;
+}
+.container{
+    padding-top: 10px;
+    border-top: 2px solid black;
+}

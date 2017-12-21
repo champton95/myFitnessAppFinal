@@ -1,0 +1,73 @@
+li {
+    z-index: 2;
+}
+ul{
+    position:relative;
+    left:-15px;
+}
+#rssTitle{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#feedControl {
+    margin-top : 10px;
+    color: #333333;
+    background-color: rgb(131, 164, 255);
+}
+#feedControl{
+    li{
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+    background-color: #E0E0E0;
+    }
+    b{
+        font-size: 10px;
+        color: black;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+.container{
+    padding-top: 10px;
+    border-top: 2px solid black;
+}
+.feedEkList{
+    width:95%; 
+    list-style:none outside none;
+    background-color:#FFFFFF; 
+    border:1px solid #438ADf; 
+    padding:4px 6px; 
+    color:#1E1E1E;
+    
+}
+.feedEkList li{
+    border-bottom:1px solid #438ADf; 
+    padding:5px;
+    font-size: 14px;
+    
+}
+.feedEkList li:last-child{
+    border-bottom:none;
+}
+.itemTitle{
+    background-color:#bbbbbb;
+}
+.itemTitle a{
+    font-weight:bold; 
+    color:#0033BB; 
+    text-decoration:none;
+    font-size:20px;
+    text-transform: capitalize;
+    padding: 5px;
+}
+.itemTitle a:hover{ 
+    color:#0088FF;
+}
+.itemDate{
+    font-size:11px;
+    color:#333333;
+    float:right;
+    margin-left:10px;
+} 

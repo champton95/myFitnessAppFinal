@@ -1,0 +1,15 @@
+#players .list-group-item {
+  padding: 5px; }
+  #players .list-group-item .badge {
+    float: right;
+    margin: 5px; }
+
+#chat {
+  border: 1px solid black;
+  height: 250px;
+  overflow: auto; }
+
+#remove:hover {
+  color: F00; }
+
+/*# sourceMappingURL=play.component.css.map */
